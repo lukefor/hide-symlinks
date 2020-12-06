@@ -31,16 +31,3 @@ class HideSymlinks(Loopback):
         else:
             raise fuse.FuseOSError(errno.EACCES)
             
-    # Prevent all writing
-    def truncate(self, path, length, fh=None):
-        raise fuse.FuseOSError(errno.EACCES)
-    def write(self, path, data, offset, fh):
-        raise fuse.FuseOSError(errno.EACCES)        
-    def symlink(self, target, source):
-        raise fuse.FuseOSError(errno.EACCES)
-    def rename(self, old, new):
-        raise fuse.FuseOSError(errno.EACCES)
-    def link(self, target, source):
-        raise fuse.FuseOSError(errno.EACCES)
-    def create(self, path, mode):
-        raise fuse.FuseOSError(errno.EACCES)

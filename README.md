@@ -6,7 +6,6 @@ A simple FUSE filesystem that makes symlinks look like actual files.
 This fork changes:
 - ctime/mtime taken from symlink rather than file pointed to (unique behaviour needed for my use case)
 - Chroot-like protection to ensure symlink points within a given path, otherwise there is nothing stopping you symlinking to anywhere
-- Write disabled (fits my use case)
 - Imports changed for Debian (fuse->fusepy)
 
 Compile
