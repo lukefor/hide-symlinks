@@ -1,15 +1,15 @@
 """A fuse filesystem that hides symlinks."""
 import sys
-
-import fuse
+import os
+import fusepy as fuse
 
 import hide_symlinks
 
 
 def main():
     """Start the FUSE filesystem"""
-    if len(sys.argv) < 3:
-        print('usage: {} <root> <mountpoint>'.format(sys.argv[0]))
+    if len(sys.argv) < 4:
+        print('usage: {} <root> <mountpoint> <virtual chroot>'.format(sys.argv[0]))
         sys.exit(1)
 
     # Find the filesystem options (the things following "-o")
@@ -28,8 +28,8 @@ def main():
             fuse_args[option_parts[0]] = option_parts[1]
 
     # Start the FUSE FS
-    fuse.FUSE(hide_symlinks.HideSymlinks(sys.argv[1]), sys.argv[2],
-              foreground=False, **fuse_args)
+    fuse.FUSE(hide_symlinks.HideSymlinks(sys.argv[1], sys.argv[3]), sys.argv[2],
+              foreground=True, **fuse_args)
 
 
 if __name__ == '__main__':

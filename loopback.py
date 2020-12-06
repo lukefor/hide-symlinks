@@ -6,7 +6,7 @@ import os
 import os.path
 import threading
 
-import fuse
+import fusepy as fuse
 
 
 class Loopback(fuse.Operations):
